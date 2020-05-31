@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    container_name: project_db
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/home/alexv/projects/books_review/pg/data/
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  app:
+    container_name: project_app
+    build: .
+    volumes:
+      - .:/code
+    environment:
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_PORT=${POSTGRES_PORT}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - DB_NAME=${POSTGRES_DBNAME}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+
+  postgres_data:

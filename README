@@ -1,0 +1,8 @@
+1) checkout project
+2) docker-compose up --build -d
+3) docker exec -it project_app bash
+    PYTHONPATH=. alembic upgrade head
+    exit
+5) get 127.0.0.1:8000/filldb
+
+api ready to be used

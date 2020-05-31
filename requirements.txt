@@ -1,0 +1,9 @@
+Faker
+marshmallow
+sanic<=20.0.0
+psycopg2-binary
+gino
+gino-sanic
+alembic
+pytest
+pytest-sanic
